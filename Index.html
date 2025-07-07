@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regional Intelligence Fusion Unit (RIFU)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .flags-marquee {
+      display: flex;
+      gap: 2rem;
+      animation: scroll 30s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .group:hover .group-hover\:block {
+      display: block;
+    }
+    
+    .hero-container {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 1;
+      /* Prevent zooming effect */
+      transform: scale(1);
+      transform-origin: top left;
+    }
+    
+    .hero-image.active {
+      opacity: 0.5;
+    }
+    
+    /* New styles for About RIFU section */
+    .about-section {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .about-card {
+      background: white;
+      border-radius: 0.375rem;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #1e40af;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .about-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .mission-vision-card {
+      background: white;
+      border-radius: 0.375rem;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #1e3a8a;
+    }
+    
+    .mission-vision-card:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #1e40af;
+    }
+    
+    .sub-section-title {
+      color: #1e3a8a;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .sub-section-title:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: #1e40af;
+      border-radius: 50%;
+    }
+    
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      20%, 80% { opacity: 0.7; }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-blue-200 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-blue-900 text-white p-4 flex justify-between items-center">
+    <div class="flex items-center">
+      <img src="Images/RIFU_LOGO.png" alt="RIFU Logo" class="h-10 mr-3">
+      <h1 class="text-xl font-bold">Regional Intelligence Fusion Unit</h1>
+    </div>
+    <nav class="space-x-6 flex items-center">
+      <a href="#" class="hover:underline">Home</a>
+      <div class="relative group">
+        <button class="hover:underline focus:outline-none">Document Library</button>
+        <div class="absolute hidden group-hover:block bg-white text-black mt-2 rounded shadow-lg z-10 min-w-[200px]">
+          <a href="http://dctest-shp-01/Shared Documents/Forms/AllItems.aspx" class="block px-4 py-2 hover:bg-gray-100">Main Library</a>
+          <a href="http://dctest-shp-01/Intelligence Intel/Forms/AllItems.aspx" class="block px-4 py-2 hover:bg-gray-100">Intelligence Briefs</a>
+          <a href="http://dctest-shp-01/Lists/Security Bulleting/AllItems.aspx" class="block px-4 py-2 hover:bg-gray-100">Security Bulletins</a>
+          <a href="http://dctest-shp-01/_layouts/15/RecycleBin.aspx?view=5" class="block px-4 py-2 hover:bg-gray-100">Recycle Bin</a>
+        </div>
+      </div>
+      <div class="relative group">
+        <button class="hover:underline focus:outline-none">Upcoming Events</button>
+        <div class="absolute hidden group-hover:block bg-white text-black mt-2 rounded shadow-lg z-10 min-w-[200px]">
+          <a href="http://dctest-shp-01/Lists/RIFU Calendar/calendar.aspx" class="block px-4 py-2 hover:bg-gray-100">Calendar</a>
+          <a href="http://dctest-shp-01/Lists/Announcement/AllItems.aspx" class="block px-4 py-2 hover:bg-gray-100">Announcements</a>
+        </div>
+      </div>
+      <a href="#about" class="hover:underline">About Us</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section with fixed image -->
+  <section class="hero-container bg-gradient-to-r from-blue-900 to-indigo-700">
+    <!-- Background image -->
+    <div class="hero-image-wrapper">
+      <img src="Images/rifu_hero.jpg" 
+           alt="Intelligence Agency" class="hero-image active">
+    </div>
+    
+    <div class="hero-content p-10 text-center">
+      <h2 class="text-4xl font-bold mb-4">Regional Intelligence Fusion Unit (RIFU)</h2>
+      <p class="text-lg">A multi-agency platform fostering regional intelligence collaboration.</p>
+    </div>
+  </section>
+
+  <!-- About RIFU -->
+  <section id="about" class="p-10 about-section">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8 section-title">About RIFU</h2>
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- About Us Card -->
+        <div class="lg:w-1/2">
+          <div class="about-card h-full">
+            <h3 class="text-2xl font-semibold mb-4 sub-section-title">About Us</h3>
+            <p class="text-gray-700 mb-4">
+              The Regional Intelligence Fusion Unit (RIFU) is a specialized security and intelligence coordination body established to facilitate real-time information sharing, strategic collaboration, and joint operational planning among security agencies within a defined geographical region.
+            </p>
+            <p class="text-gray-700">
+              RIFU plays a pivotal role in enhancing regional security by integrating intelligence from multiple sources to produce actionable insights aimed at preventing, detecting, and responding to threats such as terrorism, organized crime, banditry, insurgency, and other security challenges. RIFU operates as a multi-agency platform, bringing together representatives from various security, military, law enforcement, and intelligence agencies.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Mission & Vision Cards -->
+        <div class="lg:w-1/2">
+          <div class="mission-vision-card">
+            <div class="flex items-start mb-2">
+              <i class="fas fa-eye text-blue-800 mt-1 mr-3"></i>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Our Vision</h3>
+                <p class="text-gray-700 italic">"To be the cornerstone of integrated intelligence for a safer region."</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mission-vision-card">
+            <div class="flex items-start mb-2">
+              <i class="fas fa-bullseye text-blue-800 mt-1 mr-3"></i>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Our Mission</h3>
+                <p class="text-gray-700 italic">"To coordinate intelligence and strengthen security through actionable data and strategic partnerships."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Core Objectives -->
+      <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-2xl font-semibold mb-4 sub-section-title">Core Objectives</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="flex items-start">
+            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+            <p class="text-gray-700">Collating and analyzing intelligence from national and regional actors</p>
+          </div>
+          <div class="flex items-start">
+            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+            <p class="text-gray-700">Facilitating timely dissemination of critical information</p>
+          </div>
+          <div class="flex items-start">
+            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+            <p class="text-gray-700">Supporting coordinated security operations across boundaries</p>
+          </div>
+          <div class="flex items-start">
+            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+            <p class="text-gray-700">Building synergy among stakeholders for cross-border security</p>
+          </div>
+          <div class="flex items-start">
+            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+            <p class="text-gray-700">Enhancing early warning and response systems</p>
+          </div>
+          <div class="flex items-start">
+            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+            <p class="text-gray-700">Leveraging technology for situational awareness</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Member States Section -->
+  <section class="bg-gray-100 py-10">
+    <h2 class="text-2xl font-bold text-center mb-6">Member States</h2>
+    <div class="overflow-hidden w-full">
+      <div class="flags-marquee">
+        <img src="Images/Benin.png" alt="Benin" class="h-12">
+		<img src="Images/Cameroon.png" alt="Cameroon" class="h-12">
+		<img src="Images/Chad.png" alt="Chad" class="h-12">
+		<img src="Images/France.png" alt="France" class="h-12">
+		<img src="Images/Niger.png" alt="Niger" class="h-12">
+		<img src="Images/Nigeria.png" alt="Nigeria" class="h-12">
+        <img src="Images/UK.png" alt="UK" class="h-12">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center p-6 mt-10">
+    &copy; 2025 RIFU - Regional Intelligence Fusion Unit. All rights reserved.
+  </footer>
+
+</body>
+</html>
